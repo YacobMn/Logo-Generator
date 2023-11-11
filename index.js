@@ -47,8 +47,8 @@ const questions = [
 // TODO: Create a function to write README file
 inquirer.prompt(questions).then(responses => {
     console.log(responses)
-    new Triangle (responses.color, responses.text, responses.textColor)
-    fs.writeFile('shape.SVG', colorGenerate(responses), (err) =>     /// JSON.text ?
+    const shape = new Triangle (responses.color, responses.text, responses.textColor)
+    fs.writeFile('shape.SVG', shape.render(), (err) =>     /// JSON.text ?
     err ? console.log(err) : console.log('Commit logged!')
     );
 })
