@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const colorGenerate = require("./Develope/color");
+//const colorGenerate = require("./Develope/color");
 const {Triangle, Circle, Square} = require("./Develope/shape");
 
 // TODO: Create an array of questions for user input
@@ -11,9 +11,9 @@ const questions = [
         message: 'what shape do you want your Logo?',
         name: "shape",
         choices: [
-            'Tringle',
-            'squire',
-            'circle'
+            'Triangle',
+            'Square',
+            'Circle'
         ]
     },
     {
@@ -47,7 +47,20 @@ const questions = [
 // TODO: Create a function to write README file
 inquirer.prompt(questions).then(responses => {
     console.log(responses)
-    const shape = new Triangle (responses.color, responses.text, responses.textColor)
+    let shape; 
+    if( "Triangle" == responses.shape){
+         shape = new Triangle (responses.color, responses.text, responses.textColor)
+        
+    }
+    if("Square" == responses.shape){
+         shape = new Square (responses.color, responses.text, responses.textColor)
+
+    }
+    if("Circle" == responses.shape){
+         shape = new Circle (responses.color, responses.text, responses.textColor)
+
+    }
+
     fs.writeFile('shape.SVG', shape.render(), (err) =>     /// JSON.text ?
     err ? console.log(err) : console.log('Commit logged!')
     );
